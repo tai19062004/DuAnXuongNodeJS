@@ -34,8 +34,9 @@ const productSchema = new mongoose.Schema(
       default: "No brand",
     },
     category: {
-      type: String,
-      default: "No category",
+      type: mongoose.Schema.Types.ObjectId,
+      default: "",
+      ref: "Category",
     },
     thumbnail: {
       type: String,
@@ -52,4 +53,5 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema);
+export default Product;
