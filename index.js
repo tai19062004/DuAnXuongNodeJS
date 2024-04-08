@@ -15,7 +15,7 @@ app.use("/api", router);
 connect();
 
 // Error handling middleware should be placed 
-app.use(errorHandlerNotFound, errorHandler);
+// app.use(errorHandlerNotFound, errorHandler);
 
 app.listen(8000, () => {
   console.log(`Server is running on http://localhost:${8000}`);
