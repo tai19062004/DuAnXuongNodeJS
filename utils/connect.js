@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv"
 const connect = () => {
+  dotenv.config();
   mongoose
-    .connect(dotenv.config().parsed.DB_URL)
+    .connect(process.env.DB_URL)
     .then(() => {
       console.log("Connected to MongoDB!");
     })
