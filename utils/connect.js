@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { DB_URI } from "./env";
+import dotenv from "dotenv"
 const connect = () => {
   mongoose
-    .connect(DB_URI)
+    .connect('mongodb://localhost:27017/Xuong-NodeJs')
     .then(() => {
       console.log("Connected to MongoDB!");
     })

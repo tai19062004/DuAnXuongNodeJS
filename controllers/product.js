@@ -1,13 +1,13 @@
 import { errorMessages, successMessages } from "../constants/message.js";
 import Category from "../models/Category.js";
-import Product from "../models/Product.js";
+import ProductModel from "../models/Product.js";
 
 export const getProducts = async (req, res, next) => {
   try {
-    const data = await Product.find().populate("category");
+    const data = await ProductModel.find().populate("category");
     if (data && data.length > 0) {
       return res.status(200).json({
-        message: "Lay danh sach san pham thanh cong!",
+        message: successMessages.GET_PRODUCT_SUCCESS,
         data,
       });
     }
@@ -18,7 +18,7 @@ export const getProducts = async (req, res, next) => {
 };
 export const createProduct = async (req, res, next) => {
   try {
-    const data = await Product.create(req.body);
+    const data = await ProductModel.create(req.body);
     const updateCategory = await Category.findByIdAndUpdate(
       data.category,
       {
@@ -31,7 +31,7 @@ export const createProduct = async (req, res, next) => {
       return res.status(400).json({ message: "Them san pham that bai!" });
     }
     return res.status(201).json({
-      message: "Them san pham thanh cong!",
+      message: successMessages.CREATE_PRODUCT_SUCCESS,
       data,
     });
   } catch (error) {
@@ -41,12 +41,12 @@ export const createProduct = async (req, res, next) => {
 
 export const getProductById = async (req, res, next) => {
   try {
-    const data = await Product.findById(req.params.id).populate("category");
+    const data = await ProductModel.findById(req.params.id).populate("category");
     if (!data) {
       return res.status(400).json({ message: "Lay san pham that bai!" });
     }
     return res.status(201).json({
-      message: "Lay san pham thanh cong!",
+      message: successMessages.GET_PRODUCT_SUCCESS,
       data,
     });
   } catch (error) {
@@ -56,7 +56,7 @@ export const getProductById = async (req, res, next) => {
 
 export const updateProductById = async (req, res, next) => {
   try {
-    const data = await Product.findByIdAndUpdate(`${req.params.id}`, req.body, {
+    const data = await ProductModel.findByIdAndUpdate(`${req.params.id}`, req.body, {
       new: true,
     });
     const updateCategory = await Category.findByIdAndUpdate(
@@ -67,7 +67,7 @@ export const updateProductById = async (req, res, next) => {
       { new: true }
     );
     if (!data || !updateCategory) {
-      return res.status(400).json({ message: errorMessages.UPDATE_FAIL });
+      return res.status(400).json({ message: "Update san pham that bai!" });
     }
     return res.status(201).json({
       message: successMessages.UPDATE_SUCCESS,
@@ -78,10 +78,10 @@ export const updateProductById = async (req, res, next) => {
   }
 };
 
-// ! Xoá cứng! Không dùng
+// Xoá cứng (Không nên dùng)
 export const removeProductById = async (req, res, next) => {
   try {
-    const data = await Product.findByIdAndDelete(req.params.id);
+    const data = await ProductModel.findByIdAndDelete(req.params.id);
     if (data) {
       return res.status(200).json({
         message: successMessages.DELETE_PRODUCT_SUCCESS,
@@ -94,7 +94,7 @@ export const removeProductById = async (req, res, next) => {
   }
 };
 
-// ! Xoá mềm
+// Xoá mềm
 export const softRemoveProductById = async (req, res, next) => {
   try {
     const data = await Product.findByIdAndUpdate(
@@ -106,12 +106,11 @@ export const softRemoveProductById = async (req, res, next) => {
         new: true,
       }
     );
-    //! findByIdAndUpdate !== findByIdAndRemove
     if (!data) {
       return res.status(400).json({ message: "Cap nhat san pham that bai!" });
     }
     return res.status(201).json({
-      message: "Cap nhat san pham thanh cong!",
+      message: successMessages.UPDATE_PRODUCT_SUCCESS,
       data,
     });
   } catch (error) {

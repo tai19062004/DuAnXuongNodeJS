@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { login, register } from "../controllers/auth.js";
 import { loginSchema, registerSchema } from "../validations/auth.js";
-import validBodyRequest from "../middlewares/validRequestBody.js";
+import validBodyRequest from "../middlwares/validRequestBody.js";
 const authRouter = Router();
 
 authRouter.post("/register", validBodyRequest(registerSchema), register);

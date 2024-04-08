@@ -1,7 +1,4 @@
 import { Router } from "express";
-import validBodyRequest from "../middlewares/validRequestBody.js";
-import { checkAuth } from "../middlewares/checkAuth.js";
-import { checkIsAdmin } from "../middlewares/checkIsAdmin.js";
 import {
   createCategory,
   getCategories,
@@ -11,6 +8,9 @@ import {
   updateCategoryById,
 } from "../controllers/category.js";
 import categorySchema from "../validations/category.js";
+import { checkAuth } from "../middlwares/checkAuth.js";
+import { checkIsAdmin } from "../middlwares/checkIsAdmin.js";
+import validBodyRequest from "../middlwares/validRequestBody.js";
 
 const categoryRouter = Router();
 

@@ -4,6 +4,7 @@ export const errorMessages = Object.freeze({
   EMAIL_EXISTED: "Email already exists",
   NOT_FOUND: "Not found",
   ERROR_SERVER: "Server error",
+  EMAIL_EXIST: "Email already exists",
   EMAIL_NOT_FOUND: "Email not found",
   PASSWORD_NOT_MATCH: "Password not",
   TOKEN_INVALID: "Token invalid",
@@ -25,4 +26,8 @@ export const successMessages = Object.freeze({
   CREATE_PRODUCT_SUCCESS: "Create product successfully!",
   UPDATE_PRODUCT_SUCCESS: "Update product successfully!",
   DELETE_PRODUCT_SUCCESS: "Delete product successfully!",
+  DELETE_CATEGORY_SUCCESS: "Delete Category successfully!",
+  GET_CATEGORY_SUCCESS: "Get category successfully!",
+  CREATE_CATEGORY_SUCCESS: "Create category successfully!",
+  UPDATE_CATEGORY_SUCCESS: "Update category successfully!",
 });
