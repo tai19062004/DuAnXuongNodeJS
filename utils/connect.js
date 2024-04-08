@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv"
 const connect = () => {
   mongoose
-    .connect('mongodb://localhost:27017/Xuong-NodeJs')
+    .connect(dotenv.config().parsed.DB_URL)
     .then(() => {
       console.log("Connected to MongoDB!");
     })
